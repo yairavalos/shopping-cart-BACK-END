@@ -5,9 +5,9 @@ from rest_framework.response import Response
 
 # Create your views here.
 
-class ShopIntroAPI(APIView):
+class IntroAPI(APIView):
     """
-    Shop App Management API Welcome View
+    Users App Management API Welcome View
     """
     def get(self, request):
-        return Response('This is Shop App Management Welcome View')
+        return Response("This is User App Management Welcome View")
