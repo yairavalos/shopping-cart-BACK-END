@@ -5,6 +5,12 @@ Back-End Repository for Shopping Cart Challenge
 We are using PyEnv for Virtual Enviroment Management
 and Python Version Management, please be sure you use the same configuration
 
+## Git-Flow
+This is the project's git-flow explanation:
+- main: branch for productions purposes only
+- dev: branch for development and testings before to release
+- feat: branch for features that are going to be merged into dev
+
 ## Requirements
 All the required packages, modules and libraries are listed in requirements.txt
 Please ensure you run requirements.txt to have the expected behavior
