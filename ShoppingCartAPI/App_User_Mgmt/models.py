@@ -50,7 +50,7 @@ class UserJob(models.Model):
 
     # Str function to have a readable object description
     def __str__(self) -> str:
-        return f'{self.user_profile} | job status: {self.user_job_status} | purchase date: {self.user_job_purchase_date} delivery date: {self.user_job_delivery_date}'
+        return f'{self.user_profile} | job status: {self.user_job_status} | purchase date: {self.user_job_purchase_date} | delivery date: {self.user_job_delivery_date}'
 
 
 class UserPurchase(models.Model):
@@ -64,5 +64,5 @@ class UserPurchase(models.Model):
 
     # Str function to have a readable object description
     def __str__(self) -> str:
-        return f'{self.user_profile} | job id: {self.user_job_id} | product id: {self.shop_product_id} | product qty: {self.user_product_qty}'
+        return f'job id: {self.user_job_id} | product id: {self.shop_product_id} | product qty: {self.user_product_qty}'
 
