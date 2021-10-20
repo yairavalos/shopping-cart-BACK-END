@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # REST Libraries
     'rest_framework',
+    'django_filters',
     # My Own Apps
     'App_User_Mgmt',
     'App_Shop_Mgmt',
