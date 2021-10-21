@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 # Views
-from .views import UsersIntroAPI, UserJobOrderList
+from .views import UsersIntroAPI, UserJobOrderList, UserShoppingCartList
 
 app_name = 'App_User_Mgmt'
 
@@ -12,4 +12,5 @@ app_name = 'App_User_Mgmt'
 urlpatterns = [
     path('', UsersIntroAPI.as_view()),
     path('purchase_order/', UserJobOrderList().as_view()),
+    path('shopping_cart/', UserShoppingCartList().as_view()),
 ]
