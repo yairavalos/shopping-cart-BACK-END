@@ -26,7 +26,7 @@ class ProductCatalog(models.Model):
         ('safety','Safety'),
         ('instruments','Instrumentations'),
         ('control','Control'),
-        ('comss','Communications'),
+        ('comms','Communications'),
         ('drivers','Drivers'),
         ('robots','Robotics'),
     )
@@ -50,19 +50,28 @@ class ProductStock(models.Model):
     Its a log that works with deltas, the difference between Incomes minus Outcomes gives the stock
     This is just a very, very, simple way to represent a Kanban Supermarket more than a Warehouse
     """
-    STATUS_TYPE = (
-        ('income','INCOME'), # For Now this option would be manully entered by the admin
-        ('outcome','OUTCOME'), # For Now this option should be automatically enterede by the API
-    )
-    
-    product = models.ForeignKey(to=ProductCatalog, on_delete=PROTECT)
+        
+    product = models.OneToOneField(to=ProductCatalog, on_delete=PROTECT)
     product_stock_qty = models.IntegerField()
-    product_stock_status = models.CharField(choices=STATUS_TYPE, max_length=10)
-    product_stock_status_date = models.DateTimeField(auto_now_add=True)
+    product_stock_status_date = models.DateField(auto_now=True)
 
     # Str function to have a readable object description
     def __str__(self) -> str:
-        return f'{self.product} | qty: {self.product_stock_qty} | status: {self.product_stock_status} | tracker: {self.product_stock_status_date}'
+        return f'{self.product} | qty: {self.product_stock_qty} | date: {self.product_stock_status_date}'
+
+
+class ProductIncoming(models.Model):
+    """
+    This model represent the log for product incoming that has been received to enter into warehouse
+    This is necessary in order to calculate deltas between purchase - incoming = stock
+    """
+    product_incoming = models.ForeignKey(to=ProductCatalog, on_delete=PROTECT, related_name='product_incomes')
+    product_incoming_qty = models.IntegerField()
+    product_incoming_date = models.DateField(auto_now_add=True)
+
+    # Str function to have a readable object description
+    def __str__(self) -> str:
+        return f'{self.product_incoming} | qty: {self.product_incoming_qty} | date: {self.product_incoming_date}'
 
 
 class ProductLogistics(models.Model):

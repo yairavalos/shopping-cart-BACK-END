@@ -45,13 +45,13 @@ class UserJob(models.Model):
 
     user_profile = models.ForeignKey(to=global_settings.AUTH_USER_MODEL, on_delete=PROTECT, related_name='user_jobs')
     user_job_status = models.ForeignKey(to=ProductLogistics, on_delete=PROTECT, related_name='user_logistics')
-    user_job_purchase_date = models.DateTimeField(auto_now_add=True)
+    user_job_purchase_date = models.DateField(auto_now_add=True)
     user_job_delivery_date = models.DateField()
 
     # Str function to have a readable object description
     def __str__(self) -> str:
         return f'{self.user_profile} | job status: {self.user_job_status} | purchase date: {self.user_job_purchase_date} | delivery date: {self.user_job_delivery_date}'
-
+        
 
 class UserPurchase(models.Model):
     """
