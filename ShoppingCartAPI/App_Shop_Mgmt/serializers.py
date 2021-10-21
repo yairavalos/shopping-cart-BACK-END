@@ -2,7 +2,7 @@
 from rest_framework import serializers
 
 # Models
-from .models import ProductCatalog, ProductStock
+from .models import ProductCatalog, ProductLogistics, ProductStock
 
 # Create Serializers
 class ProductCatalogSerializer(serializers.ModelSerializer):
@@ -24,4 +24,14 @@ class ProductStockSerializer(serializers.ModelSerializer):
         model = ProductStock
         fields = ['id','product','product_stock_qty','product_stock_status_date']
         depth = 1
+
+
+class ProductLogisticSerializer(serializers.ModelSerializer):
+    """
+    This serializer helps as interface for Product Logistics Model
+    """
+
+    class Meta:
+        model = ProductLogistics
+        fields = ['id','process_step']
 
