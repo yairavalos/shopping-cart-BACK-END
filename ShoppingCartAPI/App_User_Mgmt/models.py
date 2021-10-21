@@ -58,11 +58,12 @@ class UserPurchase(models.Model):
     We are using this model to track user´s job order's BOM (Bill Of Materials)
     """
 
-    user_job_id = models.ForeignKey(to=UserJob, on_delete=CASCADE, related_name='user_jobs')
-    shop_product_id = models.ForeignKey(to=ProductCatalog, on_delete=PROTECT, related_name='user_products')
+    user_job = models.ForeignKey(to=UserJob, on_delete=CASCADE, related_name='user_jobs')
+    user_product = models.ForeignKey(to=ProductCatalog, on_delete=PROTECT, related_name='user_products')
     user_product_qty = models.IntegerField()
 
     # Str function to have a readable object description
     def __str__(self) -> str:
-        return f'job id: {self.user_job_id} | product id: {self.shop_product_id} | product qty: {self.user_product_qty}'
+        return f'job id: {self.user_job} | product id: {self.user_product} | product qty: {self.user_product_qty}'
+
 
