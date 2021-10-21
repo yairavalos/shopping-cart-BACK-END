@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from .models import ProductCatalog, ProductStock
 
 # Serializers
-from .serializers import ProductCatalogSerializer
+from .serializers import ProductCatalogSerializer, ProductStockSerializer
 
 # Create your views here.
 
@@ -31,5 +31,15 @@ class ShopProductCatalogList(generics.ListAPIView):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['product_category','product_description','product_part_number']
     ordering_fields = ['product_category']
-    
 
+
+class ShopProductStockList(generics.ListAPIView):
+    """
+    This View Class purpose is to retrieve the current Stock at Warehouse
+    """
+
+    queryset = ProductStock.objects.all()
+    serializer_class = ProductStockSerializer
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['product__product_category','product__product_description','product__product_part_number']
+    ordering_fields = ['product__product_category']
