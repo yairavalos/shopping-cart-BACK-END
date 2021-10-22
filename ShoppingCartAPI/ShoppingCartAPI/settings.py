@@ -27,7 +27,39 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.getenv('DJANGO_DEBUG', False))
 
-ALLOWED_HOSTS = ['*']
+# CORS HEADERS Parameters Config
+ALLOWED_HOSTS = ["*"]
+
+# Django CORS Configuration 
+# ---------------------------------------------------------------
+# This param has changed between the version, take Note !!
+CORS_ALLOW_ALL_ORIGINS = True
+# This config allow us to make local testings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    ]
+# This Config Allow different HTTP Verbs
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+# This Config Allow different Headers Configs
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 
 # Application definition
@@ -41,6 +73,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # REST Libraries
     'rest_framework',
+    'corsheaders',
     'django_filters',
     # My Own Apps
     'App_User_Mgmt',
@@ -50,6 +83,9 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # Special Note: CORS needs to be at the first lines
+    'corsheaders.middleware.CorsMiddleware',
+    # In this case, above of Common
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
