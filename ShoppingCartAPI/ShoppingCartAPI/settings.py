@@ -30,37 +30,6 @@ DEBUG = bool(os.getenv('DJANGO_DEBUG', False))
 # CORS HEADERS Parameters Config
 ALLOWED_HOSTS = ["*"]
 
-# Django CORS Configuration 
-# ---------------------------------------------------------------
-# This param has changed between the version, take Note !!
-CORS_ALLOW_ALL_ORIGINS = True
-# This config allow us to make local testings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
-    ]
-# This Config Allow different HTTP Verbs
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
-# This Config Allow different Headers Configs
-CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
-]
-
 
 # Application definition
 
@@ -167,3 +136,36 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Django CORS Configuration 
+# ---------------------------------------------------------------
+# This param has changed between the version, take Note !!
+CORS_ALLOW_ALL_ORIGINS = True
+# This config allow us to make local testings
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    ]
+# This Config Allow different HTTP Verbs
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+# This Config Allow different Headers Configs
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]

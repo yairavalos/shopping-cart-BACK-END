@@ -36,6 +36,16 @@ class UserJobSerializer(serializers.ModelSerializer):
         depth = 1
 
 
+class UserJobCreateSerializer(serializers.ModelSerializer):
+    """
+    This serializer helps as interface to Model UserJob
+    """
+
+    class Meta:
+        model = UserJob
+        fields = ['id','user_profile','user_job_status','user_job_purchase_date','user_job_delivery_date']
+
+
 class UserPurchaseSerializer(serializers.ModelSerializer):
     """
     This serializer helps as interface to Model UserPurchase
@@ -46,3 +56,13 @@ class UserPurchaseSerializer(serializers.ModelSerializer):
         model = UserPurchase
         fields = ['id','user_job','user_product','user_product_qty']
         depth = 1
+
+
+class UserPurchaseCreateSerializer(serializers.ModelSerializer):
+    """
+    This serializer helps as interface to Model UserPurchase
+    """
+
+    class Meta:
+        model = UserPurchase
+        fields = ['id','user_job','user_product','user_product_qty']
