@@ -20,7 +20,7 @@ class UsersIntroAPI(APIView):
         return Response("This is User App Management Welcome View")
 
 
-class UserJobOrderListCreate(generics.ListCreateAPIView):
+class UserJobOrderList(generics.ListAPIView):
     """
     This View Class purpose is to retrieve the list of job orders for product purcharse and delivery
     """
@@ -32,7 +32,7 @@ class UserJobOrderListCreate(generics.ListCreateAPIView):
     ordering_fields = ['user_profile','user_job_purchase_date']
 
 
-class UserShoppingCartListCreate(generics.ListCreateAPIView):
+class UserShoppingCartList(generics.ListAPIView):
     """
     This View Class purpose is to retrieve the BOM (Bill of Materials) from a PO (Purchase Order)
     """
