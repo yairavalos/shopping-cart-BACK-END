@@ -38,7 +38,7 @@ class ShopProductStockList(generics.ListAPIView):
     This View Class purpose is to retrieve the current Stock at Warehouse
     """
 
-    queryset = ProductStock.objects.all()
+    queryset = ProductStock.objects.filter(product_stock_qty__gt=0)
     serializer_class = ProductStockSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['product__product_category','product__product_description','product__product_part_number']
