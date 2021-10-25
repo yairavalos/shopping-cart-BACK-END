@@ -20,12 +20,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 # Views
-from .views import IntroAPI
+from .views import IntroAPI, UserIDAuthTokenView
 
 # End-Points
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', IntroAPI.as_view()),
+    path('api/login/', UserIDAuthTokenView.as_view()),
     path('api/users/', include('App_User_Mgmt.urls')),
     path('api/shop/', include('App_Shop_Mgmt.urls')),
 ]
