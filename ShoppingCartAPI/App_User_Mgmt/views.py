@@ -1,6 +1,6 @@
 # Standard Libraries and Packages
 
-from rest_framework import generics, filters
+from rest_framework import generics, filters, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -29,7 +29,7 @@ class UserJobOrderList(generics.ListAPIView):
     serializer_class = UserJobSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['=user_profile__id','=user_profile__username']
-    ordering_fields = ['user_profile','user_job_purchase_date']
+    ordering_fields = ['id','user_profile','user_job_purchase_date']
 
 
 class UserJobOrderListCreate(generics.ListCreateAPIView):
@@ -64,3 +64,17 @@ class UserShoppingCartListCreate(generics.ListCreateAPIView):
     serializer_class = UserPurchaseCreateSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['user_job__user_profile__id']
+
+    def post(self, request):
+        data = request.data
+
+        if isinstance(data, list):
+            serializer = self.get_serializer(data=data, many=True)
+        else:
+            serializer = self.get_serializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
